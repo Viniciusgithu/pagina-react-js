@@ -32,6 +32,10 @@ function App() {
     )
   }
 
+  function deleteUser (userID) {
+    const trashUser = users.filter(user => user.id !== userID)
+    setUsers(trashUser)
+  }
 
   return (
     <Container>
@@ -55,7 +59,7 @@ function App() {
             <User key={user.id}>
               <p>{user.name}</p>
               <p>{user.age}</p>
-              <button>
+              <button onClick={() => deleteUser (user.id)}>
                 <img src={Trash} alt="Botão-excluir" />
               </button>
             </User>
