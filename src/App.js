@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
-  Container, 
+  Container,
   Img,
   ContainerItens,
   H1,
@@ -16,43 +16,48 @@ import Trash from './assets/Lixeira.svg'
 
 function App() {
 
-    let [users, setUsers] = useState([])
-    let [name, setName] = useState()
-    let [age, setAge] = useState()
+  let [users, setUsers] = useState([])
+  const inputName = useRef()
+  const inputAge = useRef()
 
-    function addNewUser(){
-      setUsers([...users, {id: Math.random(), name, age}])
-    }
+  function addNewUser() {
+    setUsers 
+    (
+      [...users, 
+      { id: Math.random(), 
+        name: inputName.current.value, 
+        age: inputAge.current.value
+      }
+      ]
+    )
+  }
 
-    function changedInputName(e){
-      setName(e.target.value)
-    }
-
-    function changedInputAge(e){
-      setAge(e.target.value)
-    }
 
   return (
     <Container>
-      <Img alt='Logo-Imagem' src={Image}/>
+      <Img alt='Logo-Imagem' src={Image} />
 
       <ContainerItens>
         <H1>Olá!</H1>
 
         <LabelInput>Nome</LabelInput>
-        <Input onChange={changedInputName}></Input>
+        <Input ref={inputName}/>
 
         <LabelInput>Idade</LabelInput>
-        <Input onChange={changedInputAge}></Input>
-        
-        <Button onClick={addNewUser}>Cadastrar <img alt='seta-avançar' src={Arrow}/></Button>
+        <Input ref={inputAge}/>
+
+        <Button onClick={addNewUser}>
+          Cadastrar <img alt='seta-avançar' src={Arrow} />
+        </Button>
 
         <ul>
           {users.map(user => (
             <User key={user.id}>
-            <p>{user.name}</p>
-            <p>{user.age}</p>
-            <button><img src={Trash} alt="Botão-excluir"/></button>
+              <p>{user.name}</p>
+              <p>{user.age}</p>
+              <button>
+                <img src={Trash} alt="Botão-excluir" />
+              </button>
             </User>
           ))
           }
