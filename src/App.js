@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import axios from 'axios'
+
 import {
   Container,
   Img,
@@ -20,19 +22,31 @@ function App() {
   const inputName = useRef()
   const inputAge = useRef()
 
-  function addNewUser() {
-    setUsers 
-    (
-      [...users, 
-      { id: Math.random(), 
-        name: inputName.current.value, 
-        age: inputAge.current.value
-      }
-      ]
+  async function addNewUser() {
+
+    let { data: newUser } = await axios.post
+    ( "http://localhost:3004/users", 
+    { name: inputName.current.value, 
+      age: inputAge.current.value 
+    }
     )
+
+    setUsers ([...users, newUser ])
+
   }
 
-  function deleteUser (userID) {
+
+  useEffect(()=>{
+
+    async function fetchUsers(){
+      let {data: newUsers } = await axios.get("http://localhost:3004/users")
+      setUsers(newUsers)
+    }
+    fetchUsers()
+  },[])
+
+   async function deleteUser (userID) {
+    await axios.delete(`http://localhost:3004/users/${userID}`)
     const trashUser = users.filter(user => user.id !== userID)
     setUsers(trashUser)
   }
