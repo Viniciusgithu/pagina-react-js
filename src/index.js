@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import GlobalStyle from './globalStyle'
+import ActionRoutes from './routes'
+import GlobalStyle from './globalStyle/globalStyle'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <>
-        <App />
+        <ActionRoutes />
         <GlobalStyle/>
     </>
 );

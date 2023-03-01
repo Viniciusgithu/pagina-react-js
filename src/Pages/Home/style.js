@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Background from './assets/bgimage-login.svg'
+import Background from '../../assets/bgimage-login.svg'
+import { Link } from 'react-router-dom'
 
 
 export const Container = styled.div`
@@ -57,7 +58,7 @@ export const Input = styled.input`
   margin-bottom: 20px;
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   background: rgba(0, 0, 0, 0.8);
   border-radius: 14px;
   border: none;
@@ -69,6 +70,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 14px;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.7;
@@ -77,30 +79,4 @@ export const Button = styled.button`
   &:active {
     opacity: 0.5;
   }
-`;
-
-export const User = styled.li`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-    border: none;
-    outline: none;
-    padding: 10px;
-    margin-top: 10px;
-
-    p {
-      font-weight: normal;
-      font-size: 20px;
-      color: #fff;
-    }
-
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
 `;
